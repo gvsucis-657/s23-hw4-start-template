@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import {
+  Keyboard,
+  SafeAreaView,
+  StyleSheet,
+  TouchableWithoutFeedback,
+} from 'react-native';
+
+import CalculatorScreen from './screens/CalculatorScreen';
+import { NavigationContainer } from '@react-navigation/native';
+import React from 'react';
+import SettingsScreen from './screens/SettingsScreen';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+const Stack = createNativeStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator screenOptions={navStyling}>
+        <Stack.Screen name='Geo Calculator' component={CalculatorScreen} />
+        <Stack.Screen name='Settings' component={SettingsScreen} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
+const navStyling = {
+  headerStyle: {
+    backgroundColor: '#0065A4',
+  },
+  headerTintColor: '#fff',
+  headerTitleStyle: {
+    fontWeight: 'bold',
+  },
+};
+
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    margin: 20,
+    flex: 1,
   },
 });
